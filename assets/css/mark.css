@@ -1,0 +1,9 @@
+.container{
+  border: 2px solid green;
+}
+.row{
+  border: 2px solid red;
+}
+.col, .col-2, .col-3, .col-9 {
+  border: 3px dotted blue;
+}

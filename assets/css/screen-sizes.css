@@ -1,0 +1,10 @@
+/* This determines when the screen is small enough for certain fonts, and to trade the normal menu for the hamburger */
+
+* { font-size: .55vw }
+
+.icon-title { font-size: 3em }
+
+h1 { font-size: 14em }
+h2 { font-size: 4em }
+h3 { font-size: 5em }
+h4 { font-size: 4em }

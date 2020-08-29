@@ -1,0 +1,40 @@
+---
+layout: "wrapper"
+---
+<script language="JavaScript">
+  function testResults (form) {
+      var form = document.getElementById("inputs")
+      var name = inputs.name.value;
+      var id = inputs.id.value;
+      if(name == "liam") {
+        window.location.replace("/tutor-link")
+      }
+      tf = verify(name, id)
+      console.log(tf)
+  }
+</script>
+<script src="../assets/js/sign-in.js"></script>
+<script src="../assets/js/links-time.js"></script>
+
+<!-- Header -->
+<div class="container-fluid" style="background-color: white; height: 100vh; padding-left: 5vw; padding-right:5vw">
+    <div class="row justify-content-center">
+        <div class="col-9" style="padding-top:4em">
+          <h1>Please sign<br>in here:</h1>
+        </div>
+        {% include time.html %}
+    </div>
+    <div class="row" style="padding-top: 17em; padding-right: 3em">
+        <div class="col-9">
+          <form method="get" id="inputs" autocomplete="off">
+            <input type="text" id="name" name="name" placeholder="Leonhard Euler"><label for="name">:= (first, last)</label> <br><br><br><br>
+            <input type="text" id="id" name="id" placeholder="271828182"><label for="id">:= (student id.)</label>
+          </form>
+        </div>
+        <div class="col-3 align-self-center" style="height:22em">
+          <form>
+            <input TYPE="button" NAME="button" onClick="testResults()">
+          </form>
+        </div>
+    </div>
+</div>

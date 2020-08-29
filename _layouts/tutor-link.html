@@ -1,0 +1,35 @@
+---
+layout: "wrapper"
+---
+<script language="JavaScript">
+  function testResults (form) {
+      var form = document.getElementById("inputs")
+      var time = inputs.time.value;
+      var link = inputs.link.value;
+      alert ("Your time: " + time + " and your link: " + link);
+  }
+</script>
+
+<!-- Header -->
+<div class="container-fluid" style="background-color: white; height: 100vh; padding-left: 5vw; padding-right:5vw">
+    <div class="row justify-content-center">
+        <div class="col" style="padding-top:4em">
+          <h1>Welcome back<br>Leonhard.</h1>
+          <h2 style="padding-top: .8em">Your shift will begin when you press the arrow. <br> When does it end, and what is the Zoom link?</h2>
+        </div>
+        {% include time.html %}
+    </div>
+    <div class="row" style="padding-top: 4.5em; padding-right: 3em">
+        <div class="col-9">
+          <form method="get" id="inputs" autocomplete="off">
+            <input type="text" id="time" name="time" placeholder="2:30"><label for="time">:= (hh:mm EST)</label> <br><br><br><br>
+            <input type="text" id="link" name="link" placeholder="https://us04web.zoom.us/j/5662218874?pwd=ZlZhbHNvVDIxWC9LQmRPYTc3TjBidz09"><label for="link">:= (zoom link)</label>
+          </form>
+        </div>
+        <div class="col-3 align-self-center" style="height:22em">
+          <form>
+            <input TYPE="button" NAME="button" onClick="testResults()">
+          </form>
+        </div>
+    </div>
+</div>

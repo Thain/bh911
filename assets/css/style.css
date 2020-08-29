@@ -1,0 +1,47 @@
+body{ background-color: var(--white) }
+
+h1, h2, h3, h4, p, img {
+  line-height: 1.1;
+  letter-spacing: .03em;
+  position: relative;
+  z-index: 4 !important;
+}
+
+* { font-size: .55vw }
+
+h1 { font-size: 14em }
+h2 { font-size: 6em}
+h3, input, label { font-size: 5em }
+h4 { font-size: 3em}
+
+/* For headings */
+h1,h2 { font-family: 'CM' }
+h3,h4,input,label { font-family: 'CM-Type' }
+/* Typewriter, for body text */
+p  { font-family: 'CM-Type' }
+
+a:hover { text-decoration: underline; color: inherit }
+a { text-decoration : none }
+a.ul { text-decoration: underline }
+a { color: black; font-size: inherit }
+
+u { font-size: inherit }
+
+form * { display: inline }
+label { padding-left: 1em }
+input[type=text] { border: none; border-bottom: .1em solid black; box-shadow: none; outline: none; padding: 0px 10px; margin: 15px 0 }
+input[type=text]:focus { border:none; border-bottom: .1em solid black; box-shadow: none }
+input[type=text] { width: 30vw }
+
+input[type=button] {
+      background-image: url('../img/arrow.png');
+      background-color: white;
+      background-size: cover;
+      border: none;
+      padding: 0;
+      /* margin-bottom: 10em; */
+      width: 15em;
+      height: 10em;
+      font-size: 2rem;
+}
+input[type=button]:focus { border: none; outline-width: 0; }

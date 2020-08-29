@@ -1,0 +1,29 @@
+:root {
+  --white: #ffffff;
+  --grey: #f3f4f5;
+  --black: #1c1b1b;
+  --lblue: #e1e9f0;
+  --dblue: #8bb7d9;
+  --lorange: #e98d6a;
+  --dorange: #e06d4b;
+  --navy: #1e3461;
+}
+
+@font-face {
+  font-family: 'CM';
+  src: url(../fonts/cm-serif.ttf);
+}
+@font-face {
+  font-family: 'CM';
+  src: url(../fonts/cm-serif-it.ttf);
+  font-style: italic;
+}
+@font-face {
+  font-family: 'CM-Type';
+  src: url(../fonts/cm-type.ttf);
+}
+@font-face {
+  font-family: 'CM-Type';
+  src: url(../fonts/cm-type-it.ttf);
+  font-style: italic;
+}
