@@ -33,7 +33,7 @@ input[type=text] { border: none; border-bottom: .1em solid black; box-shadow: no
 input[type=text]:focus { border:none; border-bottom: .1em solid black; box-shadow: none }
 input[type=text] { width: 30vw }
 
-input[type=button] {
+input[type=submit] {
       background-image: url('../img/arrow.png');
       background-color: white;
       background-size: cover;
@@ -43,5 +43,6 @@ input[type=button] {
       width: 15em;
       height: 10em;
       font-size: 2rem;
+      display: inline;
 }
-input[type=button]:focus { border: none; outline-width: 0; }
+input[type=submit]:focus { border: none; outline-width: 0; }

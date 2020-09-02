@@ -1,23 +1,53 @@
 var d = new Date();
-var mon = processMon(d.getMonth());
-var date = d.getDate();
-var day = processDay(d.getDay());
-var hr = processHr(d.getHours());
-var ampm = processAMPM(d.getHours());
-var min = d.getMinutes();
 
 function setTime() {
-  document.getElementById("hour").innerHTML = hr.toString();
-  document.getElementById("min").innerHTML = min.toString();
-  document.getElementById("ampm").innerHTML = ampm;
-  document.getElementById("day").innerHTML = day;
-  document.getElementById("mon").innerHTML = mon;
-  document.getElementById("date").innerHTML = date.toString();
+  document.getElementById("hour").innerHTML = processHr(getHour());
+  document.getElementById("min").innerHTML = processMin(d.getUTCMinutes());
+  document.getElementById("ampm").innerHTML = getAMPM();
+  document.getElementById("day").innerHTML = processDay(getDay());
+  document.getElementById("mon").innerHTML = processMon(getMonth());
+  document.getElementById("date").innerHTML = getDate().toString();
 }
 
-function getDay(){ return d.getDay() }
-function getHour(){ return d.getHours() }
-function getMin(){ return d.getMinutes() }
+function getMonth(){
+  if( d.getUTCDate() < getDate() ) return d.getUTCMonth() - 1
+  else return d.getUTCMonth()
+}
+function getDay(){
+  var x = d.getUTCHours()
+  var y = d.getUTCDay()
+  if ( x < 4 ) {
+    if ( y < 1 ) return 6
+    else return d.getUTCDay() - 1
+  }
+  else return d.getUTCDay()
+}
+function getDate(){
+  var x = d.getUTCHours()
+  var y = d.getUTCDate()
+  var z = d.getUTCMonth()
+  if ( x < 4 ) {
+    if ( y == 1 ) return daysPrevMonth(z)
+    else return d.getUTCDate() - 1
+  }
+  else return d.getUTCDate()
+}
+function getHour(){
+  var x = d.getUTCHours()
+  if ( x < 4 ) return x + 20
+  else return (x - 4).toString()
+}
+function getAMPM(){
+  var x = d.getUTCHours()
+  if ( x < 4 ) var y = x + 20
+  else var y = (x - 4)
+  if ( y < 13 ) return "a.m."
+  else return "p.m."
+}
+function processMin(min){
+  if ( min > 9 ) return min.toString()
+  else return "0" + min.toString()
+}
 
 function processMon(month){
   let monthMap = new Map([
@@ -50,9 +80,22 @@ function processDay(day){
   return dayMap.get(day)
 }
 
-function processAMPM(rawHr) {
-  if ( rawHr < 13 ) return "a.m."
-  else return "p.m."
+function daysPrevMonth(month){
+  let dayMap = new Map([
+    [0, 31],
+    [1, 31],
+    [2, 28],
+    [3, 31],
+    [4, 30],
+    [5, 31],
+    [6, 30],
+    [7, 31],
+    [8, 31],
+    [9, 30],
+    [10,31],
+    [11,30]
+  ]);
+  return dayMap.get(month)
 }
 
 function processHr(rawHr) {
