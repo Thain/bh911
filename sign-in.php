@@ -1,27 +1,27 @@
 <?php
-date_default_timezone_set('America/New_York'); include 'time.php';
+date_default_timezone_set('America/New_York'); include 'time.php'; include 'verify.php'; include 'tutor-read.php';
 session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $name = $id = "";
-  $nameErr = $idErr = "";
+  $fullname = $id = "";
 
-  if ( empty($_POST["name"]) ) $nameErr = "please enter a name.";
-  else $name = proc_input($_POST["name"]);
+  if ( empty($_POST["name"]) ) { header("Location:" . $_SERVER['PHP_SELF'] . "?x=1"); exit(); }
+  else $fullname = proc_input($_POST["name"]);
 
-  if ( empty($_POST["id"]) ) $idErr = "please enter a student i.d.";
+  if ( empty($_POST["id"]) ) { header("Location:" . $_SERVER['PHP_SELF'] . "?x=1"); exit(); }
   else $id = proc_input($_POST["id"]);
 
-  if( $nameErr == "" && $idErr == "" && verify($name, $id) ){
-    $fname = substr($name, 0, strrpos($name, " "));
-    $tutor_file = fopen("./assets/tutors.txt", "a");
-    fwrite($tutor_file, $fname . "\n");
-    fclose($tutor_file);
-
-    $_SESSION['user'] = $fname;
-
-    header('Location: /tutor-link.php');
-    exit();
+  if(  verify($fullname, $id) ){
+    $_SESSION['name'] = substr($fullname, 0, strpos($fullname, " "));
+    if(tutor_on_duty($_SESSION['name'])){
+      header('Location: /update-link.php');
+      exit();
+    }
+    else{
+      header('Location: /tutor-link.php');
+      exit();
+    }
   }
+  else header('Location: /sign-in.php?x=1');
 }
 
 function proc_input($data) {
@@ -30,11 +30,9 @@ function proc_input($data) {
   return $data;
 }
 
-function verify($name, $id) {
-  $lc = array("liam chung", "260768747");
-  $ha = array("hailey agostino", "123456789");
-  $tutors = array($lc, $ha);
-  for ( $x = 0; $x <= 1; $x++ ) if ( $name == $tutors[$x][0] && strval($id) == $tutors[$x][1] ) return True;
+function tutor_on_duty($name){
+  $tutors = read_tutors();
+  foreach ($tutors as $tutor) if($tutor[0] == $name) return True;
   return False;
 }
 ?>
@@ -68,7 +66,11 @@ function verify($name, $id) {
     <form method="POST" action="/sign-in.php" id="inputs" autocomplete="off">
         <div class="row" style="padding-top: 17em; padding-right: 3em">
             <div class="col-9">
-                <input type="text" id="name" name="name" placeholder="Leonhard Euler"><label for="name">:= (first, last)</label> <br><br><br><br>
+                <input type="text" id="name" name="name" placeholder="Leonhard Euler" style="margin-bottom:5px"><label for="name">:= (first, last)</label>
+                <br><?php if($_GET['x'] == 1) echo "<h3 style='font-size:3em'> Your name and id were not recognized as a tutor. </h3>";
+                      else echo "<br>"
+                ?>
+                <br>
                 <input type="text" id="id" name="id" placeholder="271828182"><label for="id">:= (student id.)</label>
             </div>
             <div class="col-3 align-self-center" style="height:22em">

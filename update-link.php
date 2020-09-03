@@ -1,4 +1,25 @@
-<?php date_default_timezone_set('America/New_York'); include 'time.php'; ?>
+<?php date_default_timezone_set('America/New_York'); include 'time.php'; include 'tutor-read.php';
+session_start();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $new_link = "";
+
+  if ( empty($_POST["link"]) ) { header("Location:/update-link.php?x=1"); exit(); }
+  else $new_link = trim($_POST["link"]);
+
+  $name = $_SESSION['name'];
+  $tutor_line = get_tutor_line($name);
+
+  $line_to_write = substr($tutor_line, 0, strpos($tutor_line, "|", strpos($tutor_line, "|", strpos($tutor_line, "|") + 1) + 1) + 1) . $new_link . "\n";
+
+  $contents = file_get_contents('./assets/tutors.txt');
+  $contents = str_replace($tutor_line, $line_to_write, $contents);
+  file_put_contents('./assets/tutors.txt', $contents);
+
+  header('Location: /update-link.php?x=0');
+  exit();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -16,7 +37,7 @@
 <div class="container-fluid" style="background-color: white; height: 100vh; padding-left: 5vw; padding-right:5vw">
     <div class="row justify-content-center">
         <div class="col" style="padding-top:4em">
-          <h1>Thank you<br>Leonhard.</h1>
+          <h1>Thank you<br><?php echo ucwords($_SESSION['name']); ?>.</h1>
         </div>
         <?php echo format_string_time() ?>
     </div>
@@ -25,13 +46,17 @@
                                     or you change it below. You can also come sign in again if you <br>
                                     have to change it.</h2>
     </div>
-    <div class="row" style="padding-top: 16.3em; padding-right: 3em">
-        <div class="col">
-          <form autocomplete="off">
-            <input type="text" id="update-link" placeholder="https://us04web.zoom.us/j/5662218874?pwd=ZlZhbHNvVDIxWC9LQmRPYTc3TjBidz09"><label for="update-link">:= (new zoom link)</label>
-          </form>
-        </div>
-    </div>
+    <form method="POST" action="/update-link.php" id="inputs" autocomplete="off">
+      <div class="row" style="padding-top: 5.3em; padding-right: 3em">
+          <div class="col-9">
+              <input type="text" id="link" name="link" placeholder="https://us04web.zoom.us/j/5662218874?pwd=ZlZhbHNvVDIxWC9LQmRPYTc3TjBidz09" style="margin-bottom:5px"><label for="link">:= (new zoom link)</label>
+              <br><?php if($_GET['x'] == 1) echo "<h3 style='font-size:3em'> Please enter a zoom link. </h3>";?>
+          </div>
+          <div class="col-3" style="height:22em">
+              <input TYPE="submit" NAME="button" value="">
+          </div>
+      </div>
+    </form>
 </div>
 
 </body>

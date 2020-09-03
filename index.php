@@ -1,4 +1,13 @@
-<?php date_default_timezone_set('America/New_York'); include 'check-shifts.php'; ?>
+<?php date_default_timezone_set('America/New_York'); include 'check-shifts.php';
+
+function check_day(){
+  $on_off_file = fopen("./assets/day-onoff.txt", "r");
+  $on_off = fgetc($on_off_file);
+  fclose($on_off_file);
+  return $on_off;
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -22,11 +31,14 @@
 
     <div class="row" style="padding-top: 16em; padding-left: 3em; padding-right: 3em">
         <div class="col-4">
-          <h3><a id="tutor-link" href="/sign-in.php">I'm a tutor</a></h3>
+          <h3><a id='tutor-link' href='<?php  $on_off = check_day();
+                                              if($on_off) echo "/sign-in.php";
+                                              else echo "/tutor-day-over.php"; ?>'>I'm a tutor</a></h3>
         </div>
         <div class="col-5 offset-2">
-          <h3><a id="tutee-link" href="/tutor-list.html">I'm seeking a tutor</a></h3>
-          <?php checkShift("liam|2|30|zoomlinkliam", "1", "12") ?>
+          <h3><a id='tutee-link' href='<?php  $on_off = check_day();
+                                              if($on_off) echo "/tutor-list.php";
+                                              else echo "/tutee-day-over.php"; ?>'>I'm seeking a tutor</a></h3>
         </div>
     </div>
 </div>
