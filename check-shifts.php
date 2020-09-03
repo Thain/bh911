@@ -1,4 +1,6 @@
 <?php date_default_timezone_set('America/New_York'); include 'time.php'; include 'tutor-read.php';
+  checkTime();
+
 
   function checkTime(){
     $hour = (float) date("G");

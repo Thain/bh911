@@ -1,4 +1,4 @@
-<?php  date_default_timezone_set('America/New_York'); include 'time.php'; ?>
+<?php date_default_timezone_set('America/New_York'); include 'time.php'; include 'tutor-read.php'; ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -21,12 +21,18 @@
 <div class="container-fluid" style="background-color: white; height: 100vh; padding-left: 5vw; padding-right:5vw">
     <div class="row justify-content-center">
         <div class="col" style="padding-top:4em">
-          <h1>The Help Desk <br>
-              is closed <br>
-              right now. </h1>
-          <h3 style="padding-top: 1em">It opens at 9 am every morning, and closes at 5. If you visit during that time, you should be directed to a page with links for tutors on duty.</h3>
-        </div><?php echo format_string_time() ?></div>
+          <h1 style="font-size: 13em">This website was made
+              on short time and
+              for no money.</h1>
+        </div>
+        <?php echo format_string_time() ?>
     </div>
+    <div class="row"><div class="col">
+      <h3 style="padding-top: 1em">My apologies if there are any issues with it;
+                                    I'd appreciate it if you let me know
+                                    about any issues though. You can reach me
+                                    on Facebook (Liam Chung), or at lwalkerchung@gmail.com.</h3>
+    </div></div>
 </div>
 
 </body>

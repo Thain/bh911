@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   else if ( !time_open($input_time) ) { header("Location:" . $_SERVER['PHP_SELF'] . "?x=3"); exit(); }
   else if ( time_passed($input_time) ) { header("Location:" . $_SERVER['PHP_SELF'] . "?x=4"); exit(); }
   else $time = $input_time;
-  
+
   if ( empty($_POST["link"]) ){ header("Location:" . $_SERVER['PHP_SELF'] . "?x=5"); exit(); }
   else $link = trim($_POST["link"]);
 
@@ -76,8 +76,14 @@ function time_passed($time){
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/fonts.css">
   <link rel="stylesheet" href="../assets/css/screen-sizes.css">
+  <script language="JavaScript">
+    function AutoRefresh( t ) {
+             setTimeout("location.reload(true);", t);
+    }
+  </script>
+
 </head>
-<body>
+<body onload="JavaScript:AutoRefresh(60000);">
 
 <!-- Header -->
 <div class="container-fluid" style="background-color: white; height: 100vh; padding-left: 5vw; padding-right:5vw">

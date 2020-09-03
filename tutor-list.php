@@ -21,9 +21,14 @@ function tutor_code($tutor){
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/fonts.css">
   <link rel="stylesheet" href="../assets/css/screen-sizes.css">
+  <script language="JavaScript">
+    function AutoRefresh( t ) {
+             setTimeout("location.reload(true);", t);
+    }
+  </script>
 
 </head>
-<body>
+<body onload="JavaScript:AutoRefresh(60000);">
     <!-- Header -->
 <div class="container-fluid" style="background-color: white; height: 100vh; padding-left: 5vw; padding-right:5vw">
     <div class="row justify-content-center">
@@ -34,10 +39,11 @@ function tutor_code($tutor){
         </div>
         <?php echo format_string_time() ?>
     </div>
-    <div class="row" style="padding-top: 8em; padding-left: 3em; padding-right: 3em">
+    <div class="row" style="padding-top: 8em;padding-right: 3em">
         <?php
           $tutors = tutors_on_duty();
-          for($i = 0; $i < min(count($tutors),4); $i++) echo tutor_code($tutors[$i]);
+          if(count($tutors)) for($i = 0; $i < min(count($tutors),4); $i++) echo tutor_code($tutors[$i]);
+          else echo "<div class='col'><h3>You can view the tutor schedules on the <a href='https://www.facebook.com/BH911-Math-Help-Desk-111189853852809' class='ul'>Facebook page</a>.</h3></div>";
          ?>
     </div>
 </div>

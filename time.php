@@ -6,7 +6,7 @@ function format_string_time(){
 }
 
 function string_time() {
-  return "It's " . date("h:i a") . " EST<br>" . format_date() . ".<br>" . "<a class='ul' href='about'>help/about.</a><br><a class='ul' href='/'>home.</a></h4>";
+  return "It's " . date("h:i a") . " EST<br>" . format_date() . ".<br>" . "<a class='ul' href='/about.php'>help/about.</a><br><a class='ul' href='/'>home.</a></h4>";
 }
 
 function format_date(){
