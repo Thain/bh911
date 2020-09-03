@@ -5,8 +5,24 @@ function format_string_time(){
   return "<div class='col-3' style='padding-top:8em'><h4 style='text-align:right'>" . string_time() . "</div>";
 }
 
+function format_string_time_middle(){
+  return "<div class='col-6'><h4 style='text-align:right'>" . string_time_middle() . "</div>";
+}
+
+function format_string_time_mobile(){
+  return "<div class='col' style='padding-top:10em'><h4 style='text-align:left; font-size: 7em'>" . string_time_mobile() . "</div>";
+}
+
 function string_time() {
   return "It's " . date("h:i a") . " EST<br>" . format_date() . ".<br>" . "<a class='ul' href='/about.php'>help/about.</a><br><a class='ul' href='/'>home.</a></h4>";
+}
+
+function string_time_middle() {
+  return "It's " . date("h:i a") . " EST. <br> " . format_date() . "<br>" . "<a class='ul' href='/about.php'>help/about.</a><br><a class='ul' href='/'>home.</a></h4>";
+}
+
+function string_time_mobile() {
+  return "It's " . date("h:i a") . " EST. <br> " . format_date() . "<br>" . "<a class='ul' href='/about.php'>help/about.</a><br><a class='ul' href='/'>home.</a></h4>";
 }
 
 function format_date(){

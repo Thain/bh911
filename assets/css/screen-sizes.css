@@ -1,6 +1,16 @@
 /* This determines when the screen is small enough for certain fonts, and to trade the normal menu for the hamburger */
-
-* { font-size: .55vw }
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) { .show-mobile { display: block; } .hide-mobile { display: none; } .show-middle{ display: none; } * { font-size: .75vw } }
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 601px) { .show-mobile { display: block; } .hide-mobile { display: none; } .show-middle{ display: none; } * { font-size: .75vw } }
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) { .show-mobile { display: none; } .hide-mobile { display: none; } .show-middle{ display: block; } * { font-size: .75vw } }
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) { .show-mobile { display: none } .hide-mobile { display: block } .show-middle{ display: none; } * { font-size: .55vw } }
+ /* Extra large devices */
+@media only screen and (min-width: 1200px) { .show-mobile { display: none } .hide-mobile { display: block } .show-middle{ display: none; } * { font-size: .55vw } }
+/* Extra EXTRA Large devices */
+@media only screen and (min-width: 1640px) { .show-mobile { display: none } .hide-mobile { display: block } .show-middle{ display: none; } * { font-size: .55vw } }
 
 .icon-title { font-size: 3em }
 

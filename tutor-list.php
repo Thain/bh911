@@ -33,9 +33,10 @@ function tutor_code($tutor){
 <div class="container-fluid" style="background-color: white; height: 100vh; padding-left: 5vw; padding-right:5vw">
     <div class="row justify-content-center">
         <div class="col-9" style="padding-top:4em">
-          <?php $tutors = tutors_on_duty(); if(count($tutors)) echo "<h1>You're in luck!<br>There are " . min(count($tutors), 4);
-                                                    else echo "<h1>Sorry!<br>There are no ";
-                                                    echo "<br>tutors on duty.</h1>" ?>
+          <?php $tutors = tutors_on_duty(); if(count($tutors) == 1) echo "<h1>You're in luck!<br>There is 1<br>tutor on duty.</h1>" ;
+                                            else if (count($tutors) > 1) echo "<h1>You're in luck!<br>There are " . min(count($tutors), 4) . "<br>tutors on duty.</h1>" ;
+                                            else echo "<h1>Sorry!<br>There are no <br>tutors on duty.</h1>" ;
+                                            ?>
         </div>
         <?php echo format_string_time() ?>
     </div>
