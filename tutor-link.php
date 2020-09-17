@@ -36,7 +36,7 @@ function proc_time($time) {
   $time_array =  explode(":", $time);
   if ( $time_array[1] == "") $time_array[1] = "0";
   if ( ! is_numeric($time_array[0]) ||  ! is_numeric($time_array[1]) ) return array([-1,-1]);
-  if(floatval($time_array[0]) < 6) {
+  if(floatval($time_array[0]) < 12) {
     $hr = $time_array[0];
     $hr += 12;
     $time_array[0] = strval($hr);
@@ -51,7 +51,7 @@ function valid_time($time){
 }
 
 function time_open($time){
-  if ( $time[0] < 9 ||  $time[0] > 16 ) return False;
+  if ( $time[0] < 12 ||  ($time[0] > 17 && $time[0] < 21) || $time[0] > 22 ) return False;
   return True;
 }
 

@@ -8,8 +8,8 @@
     $on_off_file = fopen("./assets/day-onoff.txt", "r");
     $on_off = fgetc($on_off_file);
     fclose($on_off_file);
-    if(($hour > 16 || $hour < 9) && $on_off == '1') endDay();
-    if(($hour < 15 && $hour > 8) && $on_off == '0') startDay();
+    if(($hour < 12 || ($hour > 17 && $hour < 21) || $hour > 22) && $on_off == '1') endDay();
+    if((($hour < 17 && $hour > 11) || ($hour < 23 && $hour > 21) && $on_off == '0') startDay();
 
     $tutor_info = read_tutors();
     foreach ($tutor_info as $tutor) {
